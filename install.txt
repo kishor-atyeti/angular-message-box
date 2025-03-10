@@ -3,3 +3,20 @@ Install the following dependencies
 - npx tailwindcss init
 - ng add @ngxs/store --save
 - npm i ngx-toastr
+- npm init -y
+- npm i typescript ts-node
+- npx tsc --init
+- npm i express
+- npm i -D @types/express
+- npm i mongoose
+- npm i -D @types/mongoose
+- npm i cors
+- npm i -D @types/cors
+- npm i -D nodemon
+- npm i zod
+- npm i bcrypt
+- npm i @types/bcrypt
+- npm i lodash
+- npm i @types/lodash
+- npm i jsonwebtoken
+- npm i @types/jsonwebtoken
