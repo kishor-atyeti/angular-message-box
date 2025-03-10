@@ -1,0 +1,5 @@
+Install the following dependencies
+- npm install -D tailwindcss postcss autoprefixer
+- npx tailwindcss init
+- ng add @ngxs/store --save
+- npm i ngx-toastr
