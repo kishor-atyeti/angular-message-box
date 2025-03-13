@@ -6,14 +6,20 @@
     </card-title>
     <card-body>
 
-      <form action="">
+      <form novalidate (submit)="onSubmit()" [formGroup]="loginForm">
         <div class="form-group">
-          <label for="" class="form-label">Email Address <span>*</span></label>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" />
+          <label for="email" class="form-label">Email Address <span>*</span></label>
+          <input type="email" formControlName="email" name="email" id="email" class="form-control" placeholder="Email Address" />
+          @if (loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched) {
+          <span class="form-error">Email is required.</span>
+          }
         </div>
         <div class="form-group">
-          <label for="" class="form-label">Password <span>*</span></label>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
+          <label for="password" class="form-label">Password <span>*</span></label>
+          <input type="password" formControlName="password" name="password" id="password" class="form-control" placeholder="Password" />
+          @if (loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched) {
+          <span class="form-error">Password is required.</span>
+          }
           <button type="submit" class="btn btn-blue mt-2">Login</button>
         </div>
       </form>

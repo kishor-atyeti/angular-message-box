@@ -1,7 +1,12 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
 import { CardComponent } from '../../shared/component/card/card.component';
 import { SidebarComponent } from '../../shared/layouts/sidebar/sidebar.component';
 import { MessageItemComponent } from '../../shared/component/message-item/message-item.component';
+import { MessageService } from '../../core/services/message.service';
+import { Select, Store } from '@ngxs/store';
+import { GetAllMessages, MessageState } from '../../store/MessageState';
+import { Observable } from 'rxjs';
+import { IMessage } from '../../core/models/common.model';
 
 @Component({
   selector: 'app-messages',
@@ -11,6 +16,20 @@ import { MessageItemComponent } from '../../shared/component/message-item/messag
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.scss'
 })
-export class MessagesComponent {
+export class MessagesComponent implements OnInit {
 
+  @Select(MessageState.selectMessages) messages$!: Observable<IMessage[]>;
+  // messages$: Observable<IMessage[]> | undefined = inject(Store).select(MessageState.selectMessages);
+
+  constructor(private messageService: MessageService, private store: Store) { }
+
+  ngOnInit(): void {
+    this.messages$.subscribe({
+      next: (value) => {
+        if (!value.length) {
+          this.store.dispatch(new GetAllMessages());
+        }
+      }
+    });
+  }
 }
