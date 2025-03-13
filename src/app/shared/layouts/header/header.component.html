@@ -2,10 +2,15 @@
   <div class="container py-4 flex item-center justify-between">
     <h4 class="font-bold text-xl">Mail Box</h4>
     <div class="flex item-center">
-      <a routerLink="register" class="px-3 medium font-medium hover:text-blue-600">Register</a>
-      <a routerLink="" class="px-3 medium hover:text-blue-600">Login</a>
-      <div class="px-3 medium hover:text-blue-600 cursor-pointer" (click)="logout()">Logout</div>
+      @if (isAuthenticate$ | async) {
+        <div class="px-3 medium hover:text-blue-600 cursor-pointer" (click)="logout()">Logout</div>
+
+      } @else {
+        <a routerLink="register" class="px-3 medium font-medium hover:text-blue-600">Register</a>
+        <a routerLink="" class="px-3 medium hover:text-blue-600">Login</a>
+      }
+
+
     </div>
   </div>
-
 </header>
