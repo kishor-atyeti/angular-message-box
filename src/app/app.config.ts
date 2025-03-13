@@ -19,7 +19,9 @@ export const appConfig: ApplicationConfig = {
       positionClass: 'toast-top-center',
       preventDuplicates: true,
     }),
-    importProvidersFrom(NgxsModule.forRoot([MessageState, UserState]), HttpClientModule),
+    importProvidersFrom(
+      NgxsModule.forRoot([MessageState, UserState]),
+      HttpClientModule),
     provideHttpClient(withInterceptors([httpInterceptor]))
   ]
 };

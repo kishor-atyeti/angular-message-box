@@ -14,4 +14,12 @@ export class MessageService {
   getAllMessages(): Observable<IApiResponse<IMessage[]>> {
     return this.http.get<IApiResponse<IMessage[]>>(`${apiEndpoint.MessageEndpoint}`);
   }
+
+  sentMessage(message: IMessage): Observable<IApiResponse<IMessage>> {
+    return this.http.post<IApiResponse<IMessage>>(`${apiEndpoint.MessageEndpoint}`, message);
+  }
+
+  deleteMessage(message: IMessage) {
+    return this.http.get<IApiResponse<IMessage>>(`${apiEndpoint.MessageEndpoint}/${message._id}/delete`);
+  }
 }

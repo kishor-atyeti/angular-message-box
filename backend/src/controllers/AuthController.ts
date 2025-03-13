@@ -83,7 +83,6 @@ class AuthController {
           _id: user._id.toString(),
           email: user.email,
           name: user.name,
-          token: user.token as string,
         }
 
         response.status(201).json({ data: data });

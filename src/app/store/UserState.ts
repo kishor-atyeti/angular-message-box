@@ -29,7 +29,7 @@ export class UserState {
 
   constructor(private userService: UserService) { }
 
-  @Action(GetAllUser)
+  @Action(GetLoggedInUser)
   getLoggedInUser(ctx: StateContext<UserStateModel>) {
     return this.userService.loggedInUser().pipe(
       tap((response)=>{
