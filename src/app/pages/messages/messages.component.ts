@@ -89,7 +89,9 @@ export class MessagesComponent implements OnInit {
         }
         break;
       case 'inbox':
-        if (message.status === 1 && this.loggedUser?._id !== message.sender._id) {
+        if (message.status === 1
+          && this.loggedUser?._id !== message.sender._id
+          && this.loggedUser?._id === message.to._id) {
           return true;
         }
         break;
