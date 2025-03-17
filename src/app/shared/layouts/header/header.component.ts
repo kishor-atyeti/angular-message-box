@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { TokenService } from '../../../core/services/token.service';
 import { CommonModule } from '@angular/common';
 import { IUser } from '../../../core/models/auth.model';
-import { GetLoggedInUser, UserState } from '../../../store/UserState';
+import { GetLoggedInUser, SetUserLoggedOut, UserState } from '../../../store/UserState';
 import { Select, Store } from '@ngxs/store';
 
 @Component({
@@ -37,8 +37,8 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout().subscribe({
-      next() {
-
+      next: (user) => {
+        this.store.dispatch(new SetUserLoggedOut());
       }
     })
   }

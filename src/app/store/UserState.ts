@@ -11,6 +11,11 @@ export class GetAllUser {
 export class GetLoggedInUser{
   static readonly type = '[User] Get Logged In User';
 }
+
+export class SetUserLoggedOut{
+  static readonly type = '[User] Unset User Store';
+}
+
 export interface UserStateModel {
   users: IUser[] | undefined;
   user: IUser | null;
@@ -33,6 +38,7 @@ export class UserState {
   getLoggedInUser(ctx: StateContext<UserStateModel>) {
     return this.userService.loggedInUser().pipe(
       tap((response)=>{
+        console.log(response);
         const state = ctx.getState();
         ctx.setState({
           ...state,
@@ -63,5 +69,14 @@ export class UserState {
   @Selector([UserState])
   static getLoggedUser(state: UserStateModel): IUser | null {
     return state?.user;
+  }
+
+  @Action(SetUserLoggedOut)
+  setLoggedInUser(ctx: StateContext<UserStateModel>) {
+    const state = ctx.getState();
+    ctx.setState({
+      ...state,
+      user: null,
+    })
   }
 }
