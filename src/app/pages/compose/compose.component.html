@@ -8,18 +8,23 @@
         <h4 class="text-lg font-bold">Compose Messages</h4>
       </card-title>
       <card-body>
-        <form action="">
+        <form [formGroup]="composeForm" (submit)="sendMessage()">
           <div class="form-group">
             <label for="" class="form-label">To <span>*</span></label>
-            <input type="email" name="email" id="email" class="form-control" placeholder="To" />
+            <select name="to" id="to" class="form-select" formControlName="to">
+              <option value="">Select User</option>
+              @for (user of (users$ | async); track $index) {
+                <option [value]="user._id">{{ user.name }}</option>
+              }
+            </select>
           </div>
           <div class="form-group">
             <label for="" class="form-label">Subject <span>*</span></label>
-            <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" />
+            <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" formControlName="subject" />
           </div>
           <div class="form-group">
             <label for="" class="form-label">Message <span>*</span></label>
-            <textarea name="message" id="message" class="form-control" rows="10" placeholder="Message"></textarea>
+            <textarea name="message" id="message" class="form-control" rows="10" placeholder="Message" formControlName="body"></textarea>
             <button type="submit" class="btn btn-blue mt-2">Send Message</button>
           </div>
         </form>

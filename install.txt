@@ -20,3 +20,5 @@ Install the following dependencies
 - npm i @types/lodash
 - npm i jsonwebtoken
 - npm i @types/jsonwebtoken
+- npm i ngx-socket-io@4.6.1 => Install in angular side
+- npm i socket.io => install in backend/ folder -> in express

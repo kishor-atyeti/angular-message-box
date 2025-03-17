@@ -60,7 +60,6 @@ export class MessagesComponent implements OnInit {
     this.user$.subscribe({
       next: (user) => {
         this.loggedUser = user;
-        console.log(user);
         if (!user) {
           this.store.dispatch(new GetLoggedInUser());
         }
